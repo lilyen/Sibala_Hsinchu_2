@@ -17,6 +17,7 @@ namespace Sibala_Hsinchu_2
         }
 
         public int Points { get; protected set; }
+        public int MaxPoint { get; }
 
         public SibaraStatus.StatusEnum Status { get; protected set; }
 

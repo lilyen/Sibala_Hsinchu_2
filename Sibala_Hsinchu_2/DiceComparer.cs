@@ -37,6 +37,10 @@ namespace Sibala_Hsinchu_2
 
             if (firstDice.Status == secondDice.Status)
             {
+                if (firstDice.Points == secondDice.Points)
+                {
+                    return firstDice.MaxPoint - secondDice.MaxPoint;
+                }
                 return firstDice.Points - secondDice.Points;
             }
 
