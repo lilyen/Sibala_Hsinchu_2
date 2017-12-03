@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 
 namespace Sibala_Hsinchu_2
 {
@@ -22,7 +23,28 @@ namespace Sibala_Hsinchu_2
 
         protected  virtual void Compute()
         {
+            var distinctCount = _nums.Distinct().Count();
+
+            if (distinctCount == 1)
+            {
+                this.Points = _nums.Sum();
+                this.Status = SibaraStatus.StatusEnum.SameColor;
+            }
+
+
+
+            SetSibaraResult();
         }
-        
+
+        private void SetSibaraResult()
+        {
+            if (Status == SibaraStatus.StatusEnum.SameColor)
+                this.SibaraResult = "same color";
+            else if (Status == SibaraStatus.StatusEnum.NoPoint)
+                this.SibaraResult = "no points";
+            else if (Status == SibaraStatus.StatusEnum.Point)
+                this.SibaraResult = $"{Points} points";
+        }
+
     }
 }
