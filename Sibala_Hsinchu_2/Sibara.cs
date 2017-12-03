@@ -49,6 +49,11 @@ namespace Sibala_Hsinchu_2
                     Status = SibaraStatus.StatusEnum.Point;
                 }
             }
+            else
+            {
+                Points = _nums.GroupBy(x => x).Where(x => x.Count() == 1).Sum(x => x.Key);
+                Status = SibaraStatus.StatusEnum.Point;
+            }
 
             SetSibaraResult();
         }
@@ -63,8 +68,12 @@ namespace Sibala_Hsinchu_2
             {
                 if (Points == 12)
                     this.SibaraResult = "sibala";
+                else if(Points == 3)
+                {
+                    this.SibaraResult = "BG";
+                }
                 else
-                this.SibaraResult = $"{Points} point";
+                    this.SibaraResult = $"{Points} point";
             }
         }
 
