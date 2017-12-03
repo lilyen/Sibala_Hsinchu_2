@@ -44,7 +44,7 @@ namespace Sibala_Hsinchu_2
         }
 
         [TestMethod]
-        public void DiceComparer_NPoint_6_1_4_6_Compare_NPoint_4_2_5_5_Should_grater_0()
+        public void DiceComparer_NPoint_6_1_4_6_Compare_NPoint_4_2_5_5_Should_Less_0()
         {
             var nPoint1 = Substitute.For<ISibara>();
             nPoint1.Status.Returns(SibaraStatus.StatusEnum.Point);
@@ -60,6 +60,44 @@ namespace Sibala_Hsinchu_2
             var actual = diceComparer.Compare(nPoint1, noPoint2);
             //assert
             actual.Should().BeLessThan(expected);
+        }
+
+        [TestMethod]
+        public void DiceComparer_SameColor_1_1_1_1_Compare_SameColor_2_2_2_2_Should_Less_0()
+        {
+            var nPoint1 = Substitute.For<ISibara>();
+            nPoint1.Status.Returns(SibaraStatus.StatusEnum.SameColor);
+            nPoint1.Points.Returns(2);
+
+            var noPoint2 = Substitute.For<ISibara>();
+            noPoint2.Status.Returns(SibaraStatus.StatusEnum.SameColor);
+            noPoint2.Points.Returns(4);
+
+            var diceComparer = new DiceComparer();
+            var expected = 0;
+            //act
+            var actual = diceComparer.Compare(nPoint1, noPoint2);
+            //assert
+            actual.Should().BeGreaterThan(expected);
+        }
+
+        [TestMethod]
+        public void DiceComparer_SameColor_1_1_1_1_Compare_SameColor_4_4_4_4_Should_Greater_0()
+        {
+            var nPoint1 = Substitute.For<ISibara>();
+            nPoint1.Status.Returns(SibaraStatus.StatusEnum.SameColor);
+            nPoint1.Points.Returns(2);
+
+            var noPoint2 = Substitute.For<ISibara>();
+            noPoint2.Status.Returns(SibaraStatus.StatusEnum.SameColor);
+            noPoint2.Points.Returns(8);
+
+            var diceComparer = new DiceComparer();
+            var expected = 0;
+            //act
+            var actual = diceComparer.Compare(nPoint1, noPoint2);
+            //assert
+            actual.Should().BeGreaterThan(expected);
         }
     }
 }
