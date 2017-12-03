@@ -1,4 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using FluentAssertions;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 using NSubstitute;
 
 namespace Sibala_Hsinchu_2
@@ -24,22 +25,22 @@ namespace Sibala_Hsinchu_2
         }
 
         [TestMethod]
-        public void DiceComparer_NPoint_6_6_1_4_Compare_NPoint_4_2_4_3_Should_be_0()
+        public void DiceComparer_SameColor_4_4_4_4_Compare_SameColor_2_2_2_2_Should_grater_0()
         {
             var nPoint1 = Substitute.For<ISibara>();
-            nPoint1.Status.Returns(SibaraStatus.StatusEnum.Point);
-            nPoint1.Points.Returns(5);
+            nPoint1.Status.Returns(SibaraStatus.StatusEnum.SameColor);
+            nPoint1.Points.Returns(8);
 
             var noPoint2 = Substitute.For<ISibara>();
-            noPoint2.Status.Returns(SibaraStatus.StatusEnum.Point);
-            noPoint2.Points.Returns(5);
+            noPoint2.Status.Returns(SibaraStatus.StatusEnum.SameColor);
+            noPoint2.Points.Returns(4);
 
             var diceComparer = new DiceComparer();
             var expected = 0;
             //act
             var actual = diceComparer.Compare(nPoint1, noPoint2);
             //assert
-            Assert.AreEqual(expected, actual);
+            actual.Should().BeGreaterThan(expected);
         }
     }
 }

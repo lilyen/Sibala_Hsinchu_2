@@ -10,6 +10,10 @@ namespace Sibala_Hsinchu_2
     {
         public int Compare(ISibara firstDice, ISibara secondDice)
         {
+            if (firstDice.Status == secondDice.Status)
+            {
+                return firstDice.Points - secondDice.Points;
+            }
             return firstDice.Status - secondDice.Status;
         }
     }
