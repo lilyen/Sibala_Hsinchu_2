@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace Sibala_Hsinchu_2
 {
-    class DiceComparer : IComparer<Sibara>
+    class DiceComparer : IComparer<ISibara>
     {
-        public int Compare(Sibara firstDice, Sibara secondDice)
+        public int Compare(ISibara firstDice, ISibara secondDice)
         {
             return firstDice.Status - secondDice.Status;
         }
