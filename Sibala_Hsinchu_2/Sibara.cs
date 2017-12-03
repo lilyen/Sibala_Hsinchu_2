@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.InteropServices;
 
@@ -27,11 +28,27 @@ namespace Sibala_Hsinchu_2
 
             if (distinctCount == 1)
             {
-                this.Points = _nums.Sum();
+                this.Points = _nums.Sum()/2;
                 this.Status = SibaraStatus.StatusEnum.SameColor;
+            }else if (distinctCount == 4)
+            {
+                Points = 0;
+                Status = SibaraStatus.StatusEnum.NoPoint;
             }
-
-
+            else if (distinctCount == 2)
+            {
+                var count = _nums.GroupBy(item => item).Select(item => item.Count()).Max();
+                if (count == 3)
+                {
+                    Points = 0;
+                    Status = SibaraStatus.StatusEnum.NoPoint;
+                }
+                else
+                {
+                    Points = _nums.Take(2).Sum();
+                    Status = SibaraStatus.StatusEnum.Point;
+                }
+            }
 
             SetSibaraResult();
         }
@@ -43,7 +60,12 @@ namespace Sibala_Hsinchu_2
             else if (Status == SibaraStatus.StatusEnum.NoPoint)
                 this.SibaraResult = "no points";
             else if (Status == SibaraStatus.StatusEnum.Point)
-                this.SibaraResult = $"{Points} points";
+            {
+                if (Points == 12)
+                    this.SibaraResult = "sibala";
+                else
+                this.SibaraResult = $"{Points} point";
+            }
         }
 
     }
