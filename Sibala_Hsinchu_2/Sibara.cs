@@ -27,9 +27,18 @@ namespace Sibala_Hsinchu_2
 
             if (distinctCount == 1)
             {
-                this.Points = _nums.Sum();
+                this.Points = _nums.Sum()/2;
                 this.Status = SibaraStatus.StatusEnum.SameColor;
+            }else if (distinctCount == 4)
+            {
+                Points = 0;
+                Status = SibaraStatus.StatusEnum.NoPoint;
             }
+            else if (distinctCount == 2)
+            {
+                //var count = _nums.Distinct().
+            }
+
 
 
 
