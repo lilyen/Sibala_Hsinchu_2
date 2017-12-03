@@ -27,15 +27,14 @@ namespace Sibala_Hsinchu_2
         public int Compare(ISibara firstDice, ISibara secondDice)
         {
 
-            if (firstDice.Status == SibaraStatus.StatusEnum.SameColor &&
-                secondDice.Status == SibaraStatus.StatusEnum.SameColor)
+            if (IsBothDiceSameColor(firstDice, secondDice))
             {
                 return
                     dict.First(x => x.Value == firstDice.Points).Key -
                     dict.First(x => x.Value == secondDice.Points).Key;
             }
 
-            if (firstDice.Status == secondDice.Status)
+            if (IsBothDiceSameStatus(firstDice, secondDice))
             {
                 if (firstDice.Points == secondDice.Points)
                 {
@@ -48,6 +47,17 @@ namespace Sibala_Hsinchu_2
 
             
             return firstDice.Status - secondDice.Status;
+        }
+
+        private static bool IsBothDiceSameStatus(ISibara firstDice, ISibara secondDice)
+        {
+            return firstDice.Status == secondDice.Status;
+        }
+
+        private bool IsBothDiceSameColor(ISibara firstDice, ISibara secondDice)
+        {
+            return firstDice.Status == SibaraStatus.StatusEnum.SameColor &&
+                   secondDice.Status == SibaraStatus.StatusEnum.SameColor;
         }
     }
 }
