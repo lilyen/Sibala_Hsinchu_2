@@ -64,7 +64,7 @@ namespace Sibala_Hsinchu_2
                 if (Points == 12)
                     this.SibaraResult = "sibala";
                 else
-                this.SibaraResult = $"{Points} points";
+                this.SibaraResult = $"{Points} point";
             }
         }
 

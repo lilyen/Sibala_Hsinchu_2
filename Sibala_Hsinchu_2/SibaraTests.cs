@@ -48,5 +48,14 @@ namespace Sibala_Hsinchu_2
             var actual = target.SibaraResult;
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void input_5_5_2_2_should_be_10_Points()
+        {
+            var target = new Sibara(5, 5, 2, 2);
+            var expected = "10 point";
+            var actual = target.SibaraResult;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
