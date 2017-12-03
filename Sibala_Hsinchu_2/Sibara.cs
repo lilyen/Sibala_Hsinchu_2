@@ -14,15 +14,15 @@ namespace Sibala_Hsinchu_2
             Compute();
         }
 
-        public int Points { get; private set; }
+        public int Points { get; protected set; }
 
-        public SibaraStatus.StatusEnum Status { get; private set; }
+        public SibaraStatus.StatusEnum Status { get; protected set; }
 
-        public string SibaraResult { get; private set; }
+        public string SibaraResult { get; protected set; }
 
-        private void Compute()
+        protected  virtual void Compute()
         {
-            throw new NotImplementedException();
         }
+        
     }
 }
