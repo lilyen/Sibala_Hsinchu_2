@@ -162,5 +162,22 @@ namespace Sibala_Hsinchu_2
             //assert
             actual.Should().BeLessThan(expected);
         }
+
+        [TestMethod]
+        public void DiceComparer_SameColor_1_1_1_1_Compare_NoPoint_3_1_2_6_Should_Greater_0()
+        {
+            var nPoint1 = Substitute.For<ISibara>();
+            nPoint1.Status.Returns(SibaraStatus.StatusEnum.SameColor);
+
+            var noPoint2 = Substitute.For<ISibara>();
+            noPoint2.Status.Returns(SibaraStatus.StatusEnum.NoPoint);
+
+            var diceComparer = new DiceComparer();
+            var expected = 0;
+            //act
+            var actual = diceComparer.Compare(nPoint1, noPoint2);
+            //assert
+            actual.Should().BeGreaterThan(expected);
+        }
     }
 }
