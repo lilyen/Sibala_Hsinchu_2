@@ -4,6 +4,5 @@
     {
         int Points { get; }
         SibaraStatus.StatusEnum Status { get; }
-        void Compute();
     }
 }

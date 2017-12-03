@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Sibala_Hsinchu_2
 {
-    public partial class Sibara : ISibara
+    public class Sibara : ISibara
     {
         private List<int> _nums;
 
@@ -14,10 +14,5 @@ namespace Sibala_Hsinchu_2
 
         public int Points { get; private set; }
         public SibaraStatus.StatusEnum Status { get; private set; }
-
-        public void Compute()
-        {
-            
-        }
     }
 }
