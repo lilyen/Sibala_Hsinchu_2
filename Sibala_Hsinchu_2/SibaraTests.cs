@@ -40,13 +40,13 @@ namespace Sibala_Hsinchu_2
 
 
 
-        //[TestMethod]
-        //public void input_6_2_6_2_should_be_Sibala()
-        //{
-        //    var target = new Sibara(6, 2, 6, 2);
-        //    var expected = "sibala";
-        //    var actual = target.SibaraResult;
-        //    Assert.AreEqual(expected, actual);
-        //}
+        [TestMethod]
+        public void input_6_2_6_2_should_be_Sibala()
+        {
+            var target = new Sibara(6, 2, 6, 2);
+            var expected = "sibala";
+            var actual = target.SibaraResult;
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
