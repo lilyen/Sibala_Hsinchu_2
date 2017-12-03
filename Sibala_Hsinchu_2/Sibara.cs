@@ -31,10 +31,12 @@ namespace Sibala_Hsinchu_2
             {
                 this.Points = _nums.Sum()/2;
                 this.Status = SibaraStatus.StatusEnum.SameColor;
+                this.MaxPoint = _nums.First();
             }else if (distinctCount == 4)
             {
                 Points = 0;
                 Status = SibaraStatus.StatusEnum.NoPoint;
+                this.MaxPoint = _nums.First();
             }
             else if (distinctCount == 2)
             {
@@ -49,11 +51,17 @@ namespace Sibala_Hsinchu_2
                     Points = _nums.Take(2).Sum();
                     Status = SibaraStatus.StatusEnum.Point;
                 }
+
+                this.MaxPoint = _nums.Max();
+
             }
             else
             {
                 Points = _nums.GroupBy(x => x).Where(x => x.Count() == 1).Sum(x => x.Key);
                 Status = SibaraStatus.StatusEnum.Point;
+                this.MaxPoint = _nums.GroupBy(x => x).Where(x => x.Count() == 1).Max(x => x.Key);
+
+                
             }
 
             SetSibaraResult();

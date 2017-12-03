@@ -75,5 +75,103 @@ namespace Sibala_Hsinchu_2
             var actual = target.SibaraResult;
             Assert.AreEqual(expected, actual);
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        [TestMethod]
+        public void input_1_1_1_1_should_be_1()
+        {
+            var target = new Sibara(1, 1, 1, 1);
+            var expected = 1;
+            var actual = target.MaxPoint;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void input_1_3_4_2_should_be_4()
+        {
+            var target = new Sibara(1, 3, 4, 2);
+            var expected = 4;
+            var actual = target.MaxPoint;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void input_3_6_3_3_should_be_6()
+        {
+            var target = new Sibara(3, 6, 3, 3);
+            var expected = 6;
+            var actual = target.MaxPoint;
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+        [TestMethod]
+        public void input_6_2_6_2_should_be_6()
+        {
+            var target = new Sibara(6, 2, 6, 2);
+            var expected = 6;
+            var actual = target.MaxPoint;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void input_5_5_2_2_should_be_5()
+        {
+            var target = new Sibara(5, 5, 2, 2);
+            var expected = 5;
+            var actual = target.MaxPoint;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void input_4_4_2_1_should_be_2()
+        {
+            var target = new Sibara(4, 4, 2, 1);
+            var expected = 2;
+            var actual = target.MaxPoint;
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void input_5_5_4_3_should_be_4()
+        {
+            var target = new Sibara(5, 5, 4, 3);
+            var expected = 4;
+            var actual = target.MaxPoint;
+            Assert.AreEqual(expected, actual);
+        }
+
+
+
+
+
+
+
+
     }
 }
