@@ -48,6 +48,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DiceComparer.cs" />
     <Compile Include="SibaraStatus.cs" />
     <Compile Include="ISibara.cs" />
     <Compile Include="Sibara.cs" />
