@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="NoPointHandler.cs" />
+    <Compile Include="NormalPointHandler.cs" />
     <Compile Include="SameColorHandler.cs" />
     <Compile Include="SibaraTests.cs" />
     <Compile Include="DiceComparer.cs" />

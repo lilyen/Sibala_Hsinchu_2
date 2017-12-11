@@ -35,38 +35,8 @@ namespace Sibala_Hsinchu_2
                 new NoPointHandler(this).SetNoPoint();
                 return;
             }
-            SetNormalPoints();
+            new NormalPointHandler(this).SetNormalPoints();
         }
 
-        private void SetNormalPoints()
-        {
-            if (_nums.Distinct().Count() == 2)
-            {
-                Points = _nums.Take(2).Sum();
-                this.MaxPoint = _nums.Max();
-                Output = Points + " point";
-                SetSpecialPoints();
-                Status = SibaraStatus.StatusEnum.Point;
-            }
-            else
-            {
-                Points = _nums.GroupBy(x => x).Where(x => x.Count() == 1).Sum(x => x.Key);
-                this.MaxPoint = _nums.GroupBy(x => x).Where(x => x.Count() == 1).Max(x => x.Key);
-                Output = Points + " point";
-                SetSpecialPoints();
-                Status = SibaraStatus.StatusEnum.Point;
-            }
-        }
-
-        private void SetSpecialPoints()
-        {
-            var specialOutput = new Dictionary<int, string>()
-            {
-                {12,"sibala" },
-                {3,"BG" },
-            };
-
-            this.Output = specialOutput.ContainsKey(Points) ? specialOutput[Points] : $"{Points} point";
-        }
     }
 }
