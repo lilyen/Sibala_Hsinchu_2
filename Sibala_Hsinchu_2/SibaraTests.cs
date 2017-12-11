@@ -12,6 +12,24 @@ namespace Sibala_Hsinchu_2
         {
             _target = new Sibara(1, 1, 1, 1);
             OutputShouldBe("same color");
+            MaxPointShouldBe(1);
+            StatusShouldBe(SibaraStatus.StatusEnum.SameColor);
+            PointsShouldBe(2);
+        }
+
+        private void PointsShouldBe(int expected)
+        {
+            Assert.AreEqual(expected, _target.Points);
+        }
+
+        private void StatusShouldBe(SibaraStatus.StatusEnum expected)
+        {
+            Assert.AreEqual(expected, _target.Status);
+        }
+
+        private void MaxPointShouldBe(int expected)
+        {
+            Assert.AreEqual(expected, _target.MaxPoint);
         }
 
         private void OutputShouldBe(string expected)
