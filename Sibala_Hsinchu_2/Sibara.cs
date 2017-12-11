@@ -75,14 +75,13 @@ namespace Sibala_Hsinchu_2
 
         private void SetSpecialPoints()
         {
-            if (Points == 12)
-                this.Output = "sibala";
-            else if (Points == 3)
+            var specialOutput = new Dictionary<int, string>()
             {
-                this.Output = "BG";
-            }
-            else
-                this.Output = $"{Points} point";
+                {12,"sibala" },
+                {3,"BG" },
+            };
+
+            this.Output = specialOutput.ContainsKey(Points) ? specialOutput[Points] : $"{Points} point";
         }
     }
 }
