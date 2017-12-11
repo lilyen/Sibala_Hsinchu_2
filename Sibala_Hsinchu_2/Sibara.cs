@@ -31,13 +31,16 @@ namespace Sibala_Hsinchu_2
                 return;
             }
 
-            if (_nums.Distinct().Count() == 4)
+            if (IsNoPoint())
             {
                 Points = 0;
                 Status = SibaraStatus.StatusEnum.NoPoint;
                 this.MaxPoint = _nums.First();
+                Output = "no points";
+                return;
             }
-            else if (_nums.Distinct().Count() == 2)
+
+            if (_nums.Distinct().Count() == 2)
             {
                 var count = _nums.GroupBy(item => item).Select(item => item.Count()).Max();
                 if (count == 3)
@@ -61,6 +64,11 @@ namespace Sibala_Hsinchu_2
             }
 
             SetSibaraResult();
+        }
+
+        private bool IsNoPoint()
+        {
+            return _nums.Distinct().Count() == 4;
         }
 
         private bool IsSameColor()
