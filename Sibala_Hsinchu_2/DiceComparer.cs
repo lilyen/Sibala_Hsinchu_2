@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Sibala_Hsinchu_2
@@ -22,42 +23,45 @@ namespace Sibala_Hsinchu_2
 
         public int Compare(ISibara firstDice, ISibara secondDice)
         {
-            if (firstDice.Status == secondDice.Status)
+            if (IsSameStatus(firstDice, secondDice))
             {
-                if (firstDice.Status == SibaraStatus.StatusEnum.NoPoint)
+                var comparerLookup = new Dictionary<SibaraStatus.StatusEnum, Func<ISibara, ISibara, int>>()
                 {
-                    return 0;
-                }
-            }
+                    { SibaraStatus.StatusEnum.NoPoint, GetResultWhenNoPoint},
+                    { SibaraStatus.StatusEnum.SameColor, GetResultWhenSameColor},
+                    { SibaraStatus.StatusEnum.Point, GetResultWhenNormalPoint},
+                };
 
-            if (IsBothDiceSameColor(firstDice, secondDice))
-            {
-                return
-                    dict.First(x => x.Value == firstDice.Points).Key -
-                    dict.First(x => x.Value == secondDice.Points).Key;
-            }
-
-            if (IsBothDiceSameStatus(firstDice, secondDice))
-            {
-                if (firstDice.Points == secondDice.Points)
-                {
-                    return firstDice.MaxPoint - secondDice.MaxPoint;
-                }
-                return firstDice.Points - secondDice.Points;
+                return comparerLookup[firstDice.Status].Invoke(firstDice, secondDice);
             }
 
             return firstDice.Status - secondDice.Status;
         }
 
-        private static bool IsBothDiceSameStatus(ISibara firstDice, ISibara secondDice)
+        private int GetResultWhenNormalPoint(ISibara firstDice, ISibara secondDice)
         {
-            return firstDice.Status == secondDice.Status;
+            if (firstDice.Points == secondDice.Points)
+            {
+                return firstDice.MaxPoint - secondDice.MaxPoint;
+            }
+            return firstDice.Points - secondDice.Points;
         }
 
-        private bool IsBothDiceSameColor(ISibara firstDice, ISibara secondDice)
+        private int GetResultWhenSameColor(ISibara firstDice, ISibara secondDice)
         {
-            return firstDice.Status == SibaraStatus.StatusEnum.SameColor &&
-                   secondDice.Status == SibaraStatus.StatusEnum.SameColor;
+            return
+                dict.First(x => x.Value == firstDice.Points).Key -
+                dict.First(x => x.Value == secondDice.Points).Key;
+        }
+
+        private int GetResultWhenNoPoint(ISibara x, ISibara y)
+        {
+            return 0;
+        }
+
+        private static bool IsSameStatus(ISibara firstDice, ISibara secondDice)
+        {
+            return firstDice.Status == secondDice.Status;
         }
     }
 }
