@@ -32,18 +32,10 @@ namespace Sibala_Hsinchu_2
 
             if (maxCountOfSamePoint == 1 || maxCountOfSamePoint == 3)
             {
-                SetNoPoint();
+                new NoPointHandler(this).SetNoPoint();
                 return;
             }
             SetNormalPoints();
-        }
-
-        private void SetNoPoint()
-        {
-            Points = 0;
-            Status = SibaraStatus.StatusEnum.NoPoint;
-            this.MaxPoint = _nums.First();
-            Output = "no points";
         }
 
         private void SetNormalPoints()
