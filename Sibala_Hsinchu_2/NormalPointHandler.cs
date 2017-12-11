@@ -14,22 +14,18 @@ namespace Sibala_Hsinchu_2
 
         public void SetResult()
         {
-            if (_sibara._nums.Distinct().Count() == 2)
-            {
-                _sibara.Points = _sibara._nums.Take(2).Sum();
-                _sibara.MaxPoint = _sibara._nums.Max();
-            }
-            else
-            {
-                _sibara.Points = _sibara._nums.GroupBy(x => x).Where(x => x.Count() == 1).Sum(x => x.Key);
-                _sibara.MaxPoint = _sibara._nums.GroupBy(x => x).Where(x => x.Count() == 1).Max(x => x.Key);
-            }
-            _sibara.Output = _sibara.Points + " point";
-            SetSpecialPoints();
+            var pointOfPairDices = _sibara._nums.GroupBy(x => x)
+                .Where(x => x.Count() == 2).Min(x => x.Key);
+
+            var pointsDices = _sibara._nums.Where(x => x != pointOfPairDices);
+
+            _sibara.Points = pointsDices.Sum();
+            _sibara.MaxPoint = pointsDices.Max();
+            _sibara.Output = GetSpecialPoints();
             _sibara.Status = SibaraStatus.StatusEnum.Point;
         }
 
-        private void SetSpecialPoints()
+        private string GetSpecialPoints()
         {
             var specialOutput = new Dictionary<int, string>()
             {
@@ -37,7 +33,7 @@ namespace Sibala_Hsinchu_2
                 {3,"BG" },
             };
 
-            _sibara.Output = specialOutput.ContainsKey(_sibara.Points) ? specialOutput[_sibara.Points] : $"{_sibara.Points} point";
+            return specialOutput.ContainsKey(_sibara.Points) ? specialOutput[_sibara.Points] : $"{_sibara.Points} point";
         }
     }
 }
