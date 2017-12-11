@@ -38,120 +38,63 @@ namespace Sibala_Hsinchu_2
         }
 
         [TestMethod]
-        public void input_1_3_4_2_should_be_noPoints()
+        public void input_1_3_4_2()
         {
-            var target = new Sibara(1, 3, 4, 2);
-            var expected = "no points";
-            var actual = target.Output;
-            Assert.AreEqual(expected, actual);
+            _target = new Sibara(1, 3, 4, 2);
+            OutputShouldBe("no points");
+            MaxPointShouldBe(4);
+            StatusShouldBe(SibaraStatus.StatusEnum.NoPoint);
+            PointsShouldBe(0);
         }
 
         [TestMethod]
-        public void input_3_6_3_3_should_be_noPoints()
+        public void input_3_6_3_3()
         {
-            var target = new Sibara(3, 6, 3, 3);
-            var expected = "no points";
-            var actual = target.Output;
-            Assert.AreEqual(expected, actual);
+            _target = new Sibara(3, 6, 3, 3);
+            OutputShouldBe("no points");
+            MaxPointShouldBe(6);
+            StatusShouldBe(SibaraStatus.StatusEnum.NoPoint);
+            PointsShouldBe(0);
         }
 
         [TestMethod]
-        public void input_6_2_6_2_should_be_Sibala()
+        public void input_6_2_6_2()
         {
-            var target = new Sibara(6, 2, 6, 2);
-            var expected = "sibala";
-            var actual = target.Output;
-            Assert.AreEqual(expected, actual);
+            _target = new Sibara(6, 2, 6, 2);
+            OutputShouldBe("sibala");
+            MaxPointShouldBe(6);
+            StatusShouldBe(SibaraStatus.StatusEnum.Point);
+            PointsShouldBe(12);
         }
 
         [TestMethod]
-        public void input_5_5_2_2_should_be_10_Points()
+        public void input_5_5_2_2()
         {
-            var target = new Sibara(5, 5, 2, 2);
-            var expected = "10 point";
-            var actual = target.Output;
-            Assert.AreEqual(expected, actual);
+            _target = new Sibara(5, 5, 2, 2);
+            OutputShouldBe("10 point");
+            MaxPointShouldBe(5);
+            StatusShouldBe(SibaraStatus.StatusEnum.Point);
+            PointsShouldBe(10);
         }
 
         [TestMethod]
-        public void input_4_4_2_1_should_be_BG()
+        public void input_4_4_2_1()
         {
-            var target = new Sibara(4, 4, 2, 1);
-            var expected = "BG";
-            var actual = target.Output;
-            Assert.AreEqual(expected, actual);
+            _target = new Sibara(4, 4, 2, 1);
+            OutputShouldBe("BG");
+            MaxPointShouldBe(2);
+            StatusShouldBe(SibaraStatus.StatusEnum.Point);
+            PointsShouldBe(3);
         }
 
         [TestMethod]
-        public void input_5_5_4_3_should_be_7_Points()
+        public void input_5_5_4_3()
         {
-            var target = new Sibara(5, 5, 4, 3);
-            var expected = "7 point";
-            var actual = target.Output;
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void input_1_1_1_1_should_be_1()
-        {
-            var target = new Sibara(1, 1, 1, 1);
-            var expected = 1;
-            var actual = target.MaxPoint;
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void input_1_3_4_2_should_be_4()
-        {
-            var target = new Sibara(1, 3, 4, 2);
-            var expected = 4;
-            var actual = target.MaxPoint;
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void input_3_6_3_3_should_be_6()
-        {
-            var target = new Sibara(3, 6, 3, 3);
-            var expected = 6;
-            var actual = target.MaxPoint;
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void input_6_2_6_2_should_be_6()
-        {
-            var target = new Sibara(6, 2, 6, 2);
-            var expected = 6;
-            var actual = target.MaxPoint;
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void input_5_5_2_2_should_be_5()
-        {
-            var target = new Sibara(5, 5, 2, 2);
-            var expected = 5;
-            var actual = target.MaxPoint;
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void input_4_4_2_1_should_be_2()
-        {
-            var target = new Sibara(4, 4, 2, 1);
-            var expected = 2;
-            var actual = target.MaxPoint;
-            Assert.AreEqual(expected, actual);
-        }
-
-        [TestMethod]
-        public void input_5_5_4_3_should_be_4()
-        {
-            var target = new Sibara(5, 5, 4, 3);
-            var expected = 4;
-            var actual = target.MaxPoint;
-            Assert.AreEqual(expected, actual);
+            _target = new Sibara(5, 5, 4, 3);
+            OutputShouldBe("7 point");
+            MaxPointShouldBe(4);
+            StatusShouldBe(SibaraStatus.StatusEnum.Point);
+            PointsShouldBe(7);
         }
     }
 }
