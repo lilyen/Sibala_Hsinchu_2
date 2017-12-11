@@ -5,7 +5,7 @@ namespace Sibala_Hsinchu_2
 {
     public class Sibara : ISibara
     {
-        private List<int> _nums;
+        public List<int> _nums;
 
         public Sibara(int n1, int n2, int n3, int n4)
         {
@@ -13,18 +13,18 @@ namespace Sibala_Hsinchu_2
             Compute();
         }
 
-        public int Points { get; protected set; }
-        public int MaxPoint { get; protected set; }
+        public int Points { get; set; }
+        public int MaxPoint { get; set; }
 
-        public SibaraStatus.StatusEnum Status { get; protected set; }
+        public SibaraStatus.StatusEnum Status { get; set; }
 
-        public string Output { get; protected set; }
+        public string Output { get; set; }
 
         protected virtual void Compute()
         {
             if (IsSameColor())
             {
-                SetResultWhenSameColor();
+                new SameColorHandler(this).SetResultWhenSameColor();
                 return;
             }
 
@@ -60,14 +60,6 @@ namespace Sibala_Hsinchu_2
             Status = SibaraStatus.StatusEnum.NoPoint;
             this.MaxPoint = _nums.First();
             Output = "no points";
-        }
-
-        private void SetResultWhenSameColor()
-        {
-            this.Points = _nums.Sum() / 2;
-            this.Status = SibaraStatus.StatusEnum.SameColor;
-            this.MaxPoint = _nums.First();
-            this.Output = "same color";
         }
 
         private bool IsNoPoint()
