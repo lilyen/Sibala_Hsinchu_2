@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Sibala_Hsinchu_2
 {
@@ -28,23 +29,20 @@ namespace Sibala_Hsinchu_2
             SetOutput();
         }
 
+        private Dictionary<int, string> specialOutput = new Dictionary<int, string>
+            {
+                {12, "sibala"},
+                {3, "BG"},
+            };
+
         private void SetOutput()
         {
-            if (_sibara.Status == SibaraStatus.StatusEnum.SameColor)
-                _sibara.Output = "same color";
-            else if (_sibara.Status == SibaraStatus.StatusEnum.NoPoint)
-                _sibara.Output = "no points";
-            else if (_sibara.Status == SibaraStatus.StatusEnum.Point)
-            {
-                if (_sibara.Points == 12)
-                    _sibara.Output = "sibala";
-                else if (_sibara.Points == 3)
-                {
-                    _sibara.Output = "BG";
-                }
-                else
-                    _sibara.Output = $"{_sibara.Points} point";
-            }
+            _sibara.Output = IsSpecialOutput(specialOutput) ? specialOutput[_sibara.Points] : $"{_sibara.Points} point";
+        }
+
+        private bool IsSpecialOutput(Dictionary<int, string> specialOutput)
+        {
+            return specialOutput.ContainsKey(_sibara.Points);
         }
     }
 }
