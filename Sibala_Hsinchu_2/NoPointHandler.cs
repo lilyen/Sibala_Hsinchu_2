@@ -2,7 +2,7 @@
 
 namespace Sibala_Hsinchu_2
 {
-    public class NoPointHandler
+    public class NoPointHandler : IDiceHandler
     {
         private Sibara _sibara;
 

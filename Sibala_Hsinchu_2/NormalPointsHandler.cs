@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Sibala_Hsinchu_2
 {
-    public class NormalPointsHandler
+    public class NormalPointsHandler : IDiceHandler
     {
         private Sibara _sibara;
 

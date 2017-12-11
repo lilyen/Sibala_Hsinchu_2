@@ -22,33 +22,20 @@ namespace Sibala_Hsinchu_2
 
         protected virtual void Compute()
         {
-            if (IsSameColor())
-            {
-                new SameColorHandler(this).SetResult();
-                return;
-            }
-
-            if (IsNoPoint())
-            {
-                new NoPointHandler(this).SetResult();
-                return;
-            }
-
-            new NormalPointsHandler(this).SetResult();
+            GetHandler().SetResult();
         }
 
-        private bool IsNoPoint()
+        private IDiceHandler GetHandler()
         {
-            var count = _nums.GroupBy(item => item).Select(item => item.Count()).Max();
+            var handlerLookup = new Dictionary<int, IDiceHandler>
+            {
+                {4, new SameColorHandler(this)},
+                {3, new NoPointHandler(this)},
+                {2, new NormalPointsHandler(this)},
+                {1, new NoPointHandler(this)},
+            };
 
-            return _nums.Distinct().Count() == 4 || count == 3;
+            return handlerLookup[_nums.GroupBy(x => x).Max(x => x.Count())];
         }
-
-        private bool IsSameColor()
-        {
-            return _nums.Distinct().Count() == 1;
-        }
-
-
     }
 }

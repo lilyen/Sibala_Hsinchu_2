@@ -2,7 +2,7 @@
 
 namespace Sibala_Hsinchu_2
 {
-    public class SameColorHandler
+    public class SameColorHandler : IDiceHandler
     {
         private Sibara _sibara;
 
