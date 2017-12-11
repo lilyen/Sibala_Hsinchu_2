@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 
 namespace Sibala_Hsinchu_2
 {
@@ -12,7 +9,7 @@ namespace Sibala_Hsinchu_2
 
         public Sibara(int n1, int n2, int n3, int n4)
         {
-            _nums = new List<int> {n1, n2, n3, n4}.OrderByDescending(x=>x).ToList();
+            _nums = new List<int> { n1, n2, n3, n4 }.OrderByDescending(x => x).ToList();
             Compute();
         }
 
@@ -23,22 +20,24 @@ namespace Sibala_Hsinchu_2
 
         public string Output { get; protected set; }
 
-        protected  virtual void Compute()
+        protected virtual void Compute()
         {
-            var distinctCount = _nums.Distinct().Count();
-
-            if (distinctCount == 1)
+            if (IsSameColor())
             {
-                this.Points = _nums.Sum()/2;
+                this.Points = _nums.Sum() / 2;
                 this.Status = SibaraStatus.StatusEnum.SameColor;
                 this.MaxPoint = _nums.First();
-            }else if (distinctCount == 4)
+                this.Output = "same color";
+                return;
+            }
+
+            if (_nums.Distinct().Count() == 4)
             {
                 Points = 0;
                 Status = SibaraStatus.StatusEnum.NoPoint;
                 this.MaxPoint = _nums.First();
             }
-            else if (distinctCount == 2)
+            else if (_nums.Distinct().Count() == 2)
             {
                 var count = _nums.GroupBy(item => item).Select(item => item.Count()).Max();
                 if (count == 3)
@@ -53,18 +52,20 @@ namespace Sibala_Hsinchu_2
                 }
 
                 this.MaxPoint = _nums.Max();
-
             }
             else
             {
                 Points = _nums.GroupBy(x => x).Where(x => x.Count() == 1).Sum(x => x.Key);
                 Status = SibaraStatus.StatusEnum.Point;
                 this.MaxPoint = _nums.GroupBy(x => x).Where(x => x.Count() == 1).Max(x => x.Key);
-
-                
             }
 
             SetSibaraResult();
+        }
+
+        private bool IsSameColor()
+        {
+            return _nums.Distinct().Count() == 1;
         }
 
         private void SetSibaraResult()
@@ -77,7 +78,7 @@ namespace Sibala_Hsinchu_2
             {
                 if (Points == 12)
                     this.Output = "sibala";
-                else if(Points == 3)
+                else if (Points == 3)
                 {
                     this.Output = "BG";
                 }
@@ -85,6 +86,5 @@ namespace Sibala_Hsinchu_2
                     this.Output = $"{Points} point";
             }
         }
-
     }
 }
