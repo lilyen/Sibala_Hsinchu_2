@@ -2,7 +2,7 @@
 
 namespace Sibala_Hsinchu_2
 {
-    public class SameColorHandler
+    public class SameColorHandler : IDiceHandler
     {
         private Sibara _sibara;
 
@@ -11,7 +11,7 @@ namespace Sibala_Hsinchu_2
             _sibara = sibara;
         }
 
-        public void SetSameColor()
+        public void SetResult()
         {
             _sibara.Points = _sibara._nums.Sum() / 2;
             _sibara.Status = SibaraStatus.StatusEnum.SameColor;

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Sibala_Hsinchu_2
 {
-    public class NormalPointHandler
+    public class NormalPointHandler : IDiceHandler
     {
         private Sibara _sibara;
 
@@ -12,7 +12,7 @@ namespace Sibala_Hsinchu_2
             _sibara = sibara;
         }
 
-        public void SetNormalPoints()
+        public void SetResult()
         {
             if (_sibara._nums.Distinct().Count() == 2)
             {

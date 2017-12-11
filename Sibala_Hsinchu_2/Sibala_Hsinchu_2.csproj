@@ -67,6 +67,7 @@
     <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IDiceHandler.cs" />
     <Compile Include="NoPointHandler.cs" />
     <Compile Include="NormalPointHandler.cs" />
     <Compile Include="SameColorHandler.cs" />

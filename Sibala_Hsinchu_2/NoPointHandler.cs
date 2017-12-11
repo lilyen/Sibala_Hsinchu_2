@@ -2,7 +2,7 @@
 
 namespace Sibala_Hsinchu_2
 {
-    public class NoPointHandler
+    public class NoPointHandler : IDiceHandler
     {
         private Sibara _sibara;
 
@@ -11,7 +11,7 @@ namespace Sibala_Hsinchu_2
             _sibara = sibara;
         }
 
-        public void SetNoPoint()
+        public void SetResult()
         {
             _sibara.Points = 0;
             _sibara.Status = SibaraStatus.StatusEnum.NoPoint;

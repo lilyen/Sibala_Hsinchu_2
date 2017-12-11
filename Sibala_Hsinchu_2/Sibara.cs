@@ -24,19 +24,15 @@ namespace Sibala_Hsinchu_2
         {
             var maxCountOfSamePoint = _nums.GroupBy(x => x).Max(x => x.Count());
 
-            if (maxCountOfSamePoint == 4)
+            var handlerLookup = new Dictionary<int, IDiceHandler>()
             {
-                new SameColorHandler(this).SetSameColor();
-                return;
-            }
+                {4, new SameColorHandler(this) },
+                {3, new NoPointHandler(this) },
+                {2, new NormalPointHandler(this) },
+                {1, new NoPointHandler(this) },
+            };
 
-            if (maxCountOfSamePoint == 1 || maxCountOfSamePoint == 3)
-            {
-                new NoPointHandler(this).SetNoPoint();
-                return;
-            }
-            new NormalPointHandler(this).SetNormalPoints();
+            handlerLookup[maxCountOfSamePoint].SetResult();
         }
-
     }
 }
