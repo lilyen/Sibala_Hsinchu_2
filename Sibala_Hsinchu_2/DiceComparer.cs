@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Sibala_Hsinchu_2
 {
-    class DiceComparer : IComparer<ISibara>
+    internal class DiceComparer : IComparer<ISibara>
     {
         private Dictionary<int, int> dict;
 
@@ -20,12 +17,18 @@ namespace Sibala_Hsinchu_2
                 [3] = 12,
                 [4] = 8,
                 [5] = 2,
-
             };
         }
-        
+
         public int Compare(ISibara firstDice, ISibara secondDice)
         {
+            if (firstDice.Status == secondDice.Status)
+            {
+                if (firstDice.Status == SibaraStatus.StatusEnum.NoPoint)
+                {
+                    return 0;
+                }
+            }
 
             if (IsBothDiceSameColor(firstDice, secondDice))
             {
@@ -43,9 +46,6 @@ namespace Sibala_Hsinchu_2
                 return firstDice.Points - secondDice.Points;
             }
 
-
-
-            
             return firstDice.Status - secondDice.Status;
         }
 

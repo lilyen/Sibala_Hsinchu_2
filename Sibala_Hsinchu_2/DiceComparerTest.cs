@@ -10,11 +10,9 @@ namespace Sibala_Hsinchu_2
         [TestMethod]
         public void DiceComparer_NoPoint_6_1_3_4_Compare_NoPoint_3_4_1_2_Should_be_0()
         {
-            var noPoint1 = Substitute.For<ISibara>();
-            noPoint1.Status.Returns(SibaraStatus.StatusEnum.NoPoint);
+            var noPoint1 = new Sibara(6, 1, 3, 4);
 
-            var noPoint2 = Substitute.For<ISibara>();
-            noPoint2.Status.Returns(SibaraStatus.StatusEnum.NoPoint);
+            var noPoint2 = new Sibara(3, 4, 1, 2);
 
             var diceComparer = new DiceComparer();
             var expected = 0;
