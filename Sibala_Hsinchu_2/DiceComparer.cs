@@ -20,24 +20,39 @@ namespace Sibala_Hsinchu_2
             {
                 if (firstDice.Status == SibaraStatus.StatusEnum.NoPoint)
                 {
-                    return 0;
+                    return GetResultWhenNoPoint();
                 }
                 if (firstDice.Status == SibaraStatus.StatusEnum.SameColor)
                 {
-                    return sameColorCompareWeightLookup[firstDice.Points] -
-                           sameColorCompareWeightLookup[secondDice.Points];
+                    return GetResultWhenSameColor(firstDice, secondDice);
                 }
                 if (firstDice.Status == SibaraStatus.StatusEnum.Point)
                 {
-                    if (firstDice.Points == secondDice.Points)
-                    {
-                        return firstDice.MaxPoint - secondDice.MaxPoint;
-                    }
-                    return firstDice.Points - secondDice.Points;
+                    return GetResultWhenNormalPoints(firstDice, secondDice);
                 }
             }
 
             return firstDice.Status - secondDice.Status;
+        }
+
+        private static int GetResultWhenNormalPoints(ISibara firstDice, ISibara secondDice)
+        {
+            if (firstDice.Points == secondDice.Points)
+            {
+                return firstDice.MaxPoint - secondDice.MaxPoint;
+            }
+            return firstDice.Points - secondDice.Points;
+        }
+
+        private int GetResultWhenSameColor(ISibara firstDice, ISibara secondDice)
+        {
+            return sameColorCompareWeightLookup[firstDice.Points] -
+                   sameColorCompareWeightLookup[secondDice.Points];
+        }
+
+        private static int GetResultWhenNoPoint()
+        {
+            return 0;
         }
 
         private static bool IsBothDiceSameStatus(ISibara firstDice, ISibara secondDice)
