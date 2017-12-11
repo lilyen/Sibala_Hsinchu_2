@@ -24,13 +24,13 @@ namespace Sibala_Hsinchu_2
         {
             if (IsSameColor())
             {
-                new SameColorHandler(this).SetResultWhenSameColor();
+                new SameColorHandler(this).SetResult();
                 return;
             }
 
             if (IsNoPoint())
             {
-                SetResultWhenNoPoint();
+                new NoPointHandler(this).SetResultWhenNoPoint();
                 return;
             }
 
@@ -52,14 +52,6 @@ namespace Sibala_Hsinchu_2
 
             Status = SibaraStatus.StatusEnum.Point;
             SetOutput();
-        }
-
-        private void SetResultWhenNoPoint()
-        {
-            Points = 0;
-            Status = SibaraStatus.StatusEnum.NoPoint;
-            this.MaxPoint = _nums.First();
-            Output = "no points";
         }
 
         private bool IsNoPoint()

@@ -11,7 +11,7 @@ namespace Sibala_Hsinchu_2
             _sibara = sibara;
         }
 
-        public void SetResultWhenSameColor()
+        public void SetResult()
         {
             _sibara.Points = _sibara._nums.Sum() / 2;
             _sibara.Status = SibaraStatus.StatusEnum.SameColor;
