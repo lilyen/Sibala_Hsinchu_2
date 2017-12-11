@@ -21,7 +21,7 @@ namespace Sibala_Hsinchu_2
 
         public SibaraStatus.StatusEnum Status { get; protected set; }
 
-        public string SibaraResult { get; protected set; }
+        public string Output { get; protected set; }
 
         protected  virtual void Compute()
         {
@@ -70,19 +70,19 @@ namespace Sibala_Hsinchu_2
         private void SetSibaraResult()
         {
             if (Status == SibaraStatus.StatusEnum.SameColor)
-                this.SibaraResult = "same color";
+                this.Output = "same color";
             else if (Status == SibaraStatus.StatusEnum.NoPoint)
-                this.SibaraResult = "no points";
+                this.Output = "no points";
             else if (Status == SibaraStatus.StatusEnum.Point)
             {
                 if (Points == 12)
-                    this.SibaraResult = "sibala";
+                    this.Output = "sibala";
                 else if(Points == 3)
                 {
-                    this.SibaraResult = "BG";
+                    this.Output = "BG";
                 }
                 else
-                    this.SibaraResult = $"{Points} point";
+                    this.Output = $"{Points} point";
             }
         }
 
