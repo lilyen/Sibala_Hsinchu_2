@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Sibala_Hsinchu_2
 {
@@ -16,23 +17,24 @@ namespace Sibala_Hsinchu_2
 
         public int Compare(ISibara firstDice, ISibara secondDice)
         {
-            if (firstDice.Status == secondDice.Status)
+            if (IsSameStatus(firstDice, secondDice))
             {
-                if (firstDice.Status == SibaraStatus.StatusEnum.NoPoint)
+                var comparerLookup = new Dictionary<SibaraStatus.StatusEnum, Func<ISibara, ISibara, int>>
                 {
-                    return GetResultWhenNoPoint();
-                }
-                if (firstDice.Status == SibaraStatus.StatusEnum.SameColor)
-                {
-                    return GetResultWhenSameColor(firstDice, secondDice);
-                }
-                if (firstDice.Status == SibaraStatus.StatusEnum.Point)
-                {
-                    return GetResultWhenNormalPoints(firstDice, secondDice);
-                }
+                    {SibaraStatus.StatusEnum.NoPoint, GetResultWhenNoPoint},
+                    {SibaraStatus.StatusEnum.SameColor, GetResultWhenSameColor},
+                    {SibaraStatus.StatusEnum.Point, GetResultWhenNormalPoints},
+                };
+
+                return comparerLookup[firstDice.Status].Invoke(firstDice, secondDice);
             }
 
             return firstDice.Status - secondDice.Status;
+        }
+
+        private static bool IsSameStatus(ISibara firstDice, ISibara secondDice)
+        {
+            return firstDice.Status == secondDice.Status;
         }
 
         private static int GetResultWhenNormalPoints(ISibara firstDice, ISibara secondDice)
@@ -50,7 +52,7 @@ namespace Sibala_Hsinchu_2
                    sameColorCompareWeightLookup[secondDice.Points];
         }
 
-        private static int GetResultWhenNoPoint()
+        private static int GetResultWhenNoPoint(ISibara dice, ISibara firstDice)
         {
             return 0;
         }
