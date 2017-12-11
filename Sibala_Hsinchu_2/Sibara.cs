@@ -24,42 +24,57 @@ namespace Sibala_Hsinchu_2
         {
             if (IsSameColor())
             {
-                this.Points = _nums.Sum() / 2;
-                this.Status = SibaraStatus.StatusEnum.SameColor;
-                this.MaxPoint = _nums.First();
-                this.Output = "same color";
+                SetResultWhenSameColor();
                 return;
             }
-            else if (_nums.Distinct().Count() == 4)
-            {
-                Points = 0;
-                Status = SibaraStatus.StatusEnum.NoPoint;
-                this.MaxPoint = _nums.First();
-            }
-            else if (_nums.Distinct().Count() == 2)
-            {
-                var count = _nums.GroupBy(item => item).Select(item => item.Count()).Max();
-                if (count == 3)
-                {
-                    Points = 0;
-                    Status = SibaraStatus.StatusEnum.NoPoint;
-                }
-                else
-                {
-                    Points = _nums.Take(2).Sum();
-                    Status = SibaraStatus.StatusEnum.Point;
-                }
 
+            if (IsNoPoint())
+            {
+                SetResultWhenNoPoint();
+                return;
+            }
+
+            SetResultWhenNormalPoint();
+        }
+
+        private void SetResultWhenNormalPoint()
+        {
+            if (_nums.Distinct().Count() == 2)
+            {
+                Points = _nums.Take(2).Sum();
                 this.MaxPoint = _nums.Max();
             }
             else
             {
                 Points = _nums.GroupBy(x => x).Where(x => x.Count() == 1).Sum(x => x.Key);
-                Status = SibaraStatus.StatusEnum.Point;
                 this.MaxPoint = _nums.GroupBy(x => x).Where(x => x.Count() == 1).Max(x => x.Key);
             }
 
-            SetSibaraResult();
+            Status = SibaraStatus.StatusEnum.Point;
+            SetOutput();
+        }
+
+        private void SetResultWhenNoPoint()
+        {
+            Points = 0;
+            Status = SibaraStatus.StatusEnum.NoPoint;
+            this.MaxPoint = _nums.First();
+            Output = "no points";
+        }
+
+        private void SetResultWhenSameColor()
+        {
+            this.Points = _nums.Sum() / 2;
+            this.Status = SibaraStatus.StatusEnum.SameColor;
+            this.MaxPoint = _nums.First();
+            this.Output = "same color";
+        }
+
+        private bool IsNoPoint()
+        {
+            var count = _nums.GroupBy(item => item).Select(item => item.Count()).Max();
+
+            return _nums.Distinct().Count() == 4 || count == 3;
         }
 
         private bool IsSameColor()
@@ -67,7 +82,7 @@ namespace Sibala_Hsinchu_2
             return _nums.Distinct().Count() == 1;
         }
 
-        private void SetSibaraResult()
+        private void SetOutput()
         {
             if (Status == SibaraStatus.StatusEnum.SameColor)
                 this.Output = "same color";
