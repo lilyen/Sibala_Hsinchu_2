@@ -8,20 +8,17 @@ namespace Sibala_Hsinchu_2
     public class DiceComparerTest
     {
         [TestMethod]
-        public void DiceComparer_NoPoint_6_1_3_4_Compare_NoPoint_3_4_1_2_Should_be_0()
+        public void noPoints_should_be_equal_to_noPoints()
         {
-            var noPoint1 = Substitute.For<ISibara>();
-            noPoint1.Status.Returns(SibaraStatus.StatusEnum.NoPoint);
+            var dice1 = new Sibara(6, 1, 3, 4);
+            var dice2 = new Sibara(3, 4, 1, 2);
 
-            var noPoint2 = Substitute.For<ISibara>();
-            noPoint2.Status.Returns(SibaraStatus.StatusEnum.NoPoint);
+            FirstDiceShouldBeEqualToSecond(dice1, dice2);
+        }
 
-            var diceComparer = new DiceComparer();
-            var expected = 0;
-            //act
-            var actual = diceComparer.Compare(noPoint1, noPoint2);
-            //assert
-            Assert.AreEqual(expected, actual);
+        private static void FirstDiceShouldBeEqualToSecond(ISibara dice1, ISibara dice2)
+        {
+            Assert.AreEqual(0, new DiceComparer().Compare(dice1, dice2));
         }
 
         [TestMethod]
