@@ -22,18 +22,18 @@ namespace Sibala_Hsinchu_2
 
         protected virtual void Compute()
         {
-            if (IsSameColor())
+            var maxCountOfSamePoint = _nums.GroupBy(x => x).Max(x => x.Count());
+            if (maxCountOfSamePoint == 4)
             {
                 SetSameColor();
                 return;
             }
 
-            if (IsNoPoint())
+            if (maxCountOfSamePoint == 1 || maxCountOfSamePoint == 3)
             {
                 SetNoPoint();
                 return;
             }
-
             SetNormalPoints();
         }
 
@@ -70,29 +70,6 @@ namespace Sibala_Hsinchu_2
                 Output = Points + " point";
                 SetSpecialPoints();
                 Status = SibaraStatus.StatusEnum.Point;
-            }
-        }
-
-        private bool IsNoPoint()
-        {
-            var isSamePointWith3Dices = _nums.GroupBy(item => item).Select(item => item.Count()).Max() == 3;
-            return _nums.Distinct().Count() == 4 || isSamePointWith3Dices;
-        }
-
-        private bool IsSameColor()
-        {
-            return _nums.Distinct().Count() == 1;
-        }
-
-        private void SetSibaraResult()
-        {
-            if (Status == SibaraStatus.StatusEnum.SameColor)
-                this.Output = "same color";
-            else if (Status == SibaraStatus.StatusEnum.NoPoint)
-                this.Output = "no points";
-            else if (Status == SibaraStatus.StatusEnum.Point)
-            {
-                SetSpecialPoints();
             }
         }
 
