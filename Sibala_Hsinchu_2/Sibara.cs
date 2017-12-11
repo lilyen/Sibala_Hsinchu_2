@@ -30,28 +30,11 @@ namespace Sibala_Hsinchu_2
 
             if (IsNoPoint())
             {
-                new NoPointHandler(this).SetResultWhenNoPoint();
+                new NoPointHandler(this).SetResult();
                 return;
             }
 
-            SetResultWhenNormalPoint();
-        }
-
-        private void SetResultWhenNormalPoint()
-        {
-            if (_nums.Distinct().Count() == 2)
-            {
-                Points = _nums.Take(2).Sum();
-                this.MaxPoint = _nums.Max();
-            }
-            else
-            {
-                Points = _nums.GroupBy(x => x).Where(x => x.Count() == 1).Sum(x => x.Key);
-                this.MaxPoint = _nums.GroupBy(x => x).Where(x => x.Count() == 1).Max(x => x.Key);
-            }
-
-            Status = SibaraStatus.StatusEnum.Point;
-            SetOutput();
+            new NormalPointsHandler(this).SetResult();
         }
 
         private bool IsNoPoint()
@@ -66,23 +49,6 @@ namespace Sibala_Hsinchu_2
             return _nums.Distinct().Count() == 1;
         }
 
-        private void SetOutput()
-        {
-            if (Status == SibaraStatus.StatusEnum.SameColor)
-                this.Output = "same color";
-            else if (Status == SibaraStatus.StatusEnum.NoPoint)
-                this.Output = "no points";
-            else if (Status == SibaraStatus.StatusEnum.Point)
-            {
-                if (Points == 12)
-                    this.Output = "sibala";
-                else if (Points == 3)
-                {
-                    this.Output = "BG";
-                }
-                else
-                    this.Output = $"{Points} point";
-            }
-        }
+
     }
 }

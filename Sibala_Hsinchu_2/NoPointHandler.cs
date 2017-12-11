@@ -11,7 +11,7 @@ namespace Sibala_Hsinchu_2
             _sibara = sibara;
         }
 
-        public void SetResultWhenNoPoint()
+        public void SetResult()
         {
             _sibara.Points = 0;
             _sibara.Status = SibaraStatus.StatusEnum.NoPoint;
