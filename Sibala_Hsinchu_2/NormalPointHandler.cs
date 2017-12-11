@@ -18,18 +18,15 @@ namespace Sibala_Hsinchu_2
             {
                 _sibara.Points = _sibara._nums.Take(2).Sum();
                 _sibara.MaxPoint = _sibara._nums.Max();
-                _sibara.Output = _sibara.Points + " point";
-                SetSpecialPoints();
-                _sibara.Status = SibaraStatus.StatusEnum.Point;
             }
             else
             {
                 _sibara.Points = _sibara._nums.GroupBy(x => x).Where(x => x.Count() == 1).Sum(x => x.Key);
                 _sibara.MaxPoint = _sibara._nums.GroupBy(x => x).Where(x => x.Count() == 1).Max(x => x.Key);
-                _sibara.Output = _sibara.Points + " point";
-                SetSpecialPoints();
-                _sibara.Status = SibaraStatus.StatusEnum.Point;
             }
+            _sibara.Output = _sibara.Points + " point";
+            SetSpecialPoints();
+            _sibara.Status = SibaraStatus.StatusEnum.Point;
         }
 
         private void SetSpecialPoints()
