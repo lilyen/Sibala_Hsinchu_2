@@ -51,9 +51,7 @@ namespace Sibala_Hsinchu_2
         public void input_5_5_4_3_should_be_7_Points()
         {
             var target = new Sibara(5, 5, 4, 3);
-            var expected = "7 point";
-            var actual = target.SibaraResult;
-            Assert.AreEqual(expected, actual);
+            VerifySibala(target, SibaraStatus.StatusEnum.Point, "7 point", 7, 4);
         }
 
         private void VerifySibala(Sibara target, SibaraStatus.StatusEnum status, string result, int points, int maxPoint)
@@ -62,15 +60,6 @@ namespace Sibala_Hsinchu_2
             Assert.AreEqual(result, target.SibaraResult);
             Assert.AreEqual(points, target.Points);
             Assert.AreEqual(maxPoint, target.MaxPoint);
-        }
-
-        [TestMethod]
-        public void input_5_5_4_3_should_be_4()
-        {
-            var target = new Sibara(5, 5, 4, 3);
-            var expected = 4;
-            var actual = target.MaxPoint;
-            Assert.AreEqual(expected, actual);
         }
     }
 }
