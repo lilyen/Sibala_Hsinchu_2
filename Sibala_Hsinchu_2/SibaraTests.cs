@@ -1,15 +1,17 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
+using Assert = Microsoft.VisualStudio.TestTools.UnitTesting.Assert;
 
 namespace Sibala_Hsinchu_2
 {
     [TestClass]
     public class SibaraTests
     {
-        [TestMethod]
-        public void input_1_1_1_1_should_be_sameColor()
+        [TestCase(1, 1, 1, 1, SibaraStatus.StatusEnum.SameColor, "same color", 1, 1, TestName = "input_1_1_1_1_should_be_sameColor")]
+        public void Test_Silbala(int dice1, int dice2, int dice3, int dice4, SibaraStatus.StatusEnum status, string result, int points, int maxPoint)
         {
-            var target = new Sibara(1, 1, 1, 1);
-            VerifySibala(target, SibaraStatus.StatusEnum.SameColor, "same color", 1, 1);
+            var target = new Sibara(dice1, dice2, dice3, dice4);
+            VerifySibala(target, status, result, points, maxPoint);
         }
 
         [TestMethod]
