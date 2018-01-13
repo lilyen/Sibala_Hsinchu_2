@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.InteropServices;
 
 namespace Sibala_Hsinchu_2
 {
@@ -13,7 +10,7 @@ namespace Sibala_Hsinchu_2
 
         public Sibara(int n1, int n2, int n3, int n4)
         {
-            _nums = new List<int> {n1, n2, n3, n4}.OrderByDescending(x=>x).ToList();
+            _nums = new List<int> { n1, n2, n3, n4 }.OrderByDescending(x => x).ToList();
             Compute();
         }
 
@@ -24,7 +21,7 @@ namespace Sibala_Hsinchu_2
 
         public string SibaraResult { get; protected set; }
 
-        protected  virtual void Compute()
+        protected virtual void Compute()
         {
             var distinctCount = _nums.Distinct().Count();
 
@@ -33,7 +30,8 @@ namespace Sibala_Hsinchu_2
                 this.Points = _nums.First();
                 this.Status = SibaraStatus.StatusEnum.SameColor;
                 this.MaxPoint = _nums.First();
-            }else if (distinctCount == 4)
+            }
+            else if (distinctCount == 4)
             {
                 Points = 0;
                 Status = SibaraStatus.StatusEnum.NoPoint;
@@ -46,23 +44,20 @@ namespace Sibala_Hsinchu_2
                 {
                     Points = 0;
                     Status = SibaraStatus.StatusEnum.NoPoint;
+                    this.MaxPoint = 0;
                 }
                 else
                 {
                     Points = _nums.Take(2).Sum();
                     Status = SibaraStatus.StatusEnum.Point;
+                    this.MaxPoint = _nums.Max();
                 }
-
-                this.MaxPoint = _nums.Max();
-
             }
             else
             {
                 Points = _nums.GroupBy(x => x).Where(x => x.Count() == 1).Sum(x => x.Key);
                 Status = SibaraStatus.StatusEnum.Point;
                 this.MaxPoint = _nums.GroupBy(x => x).Where(x => x.Count() == 1).Max(x => x.Key);
-
-                
             }
 
             SetSibaraResult();
@@ -78,7 +73,7 @@ namespace Sibala_Hsinchu_2
             {
                 if (Points == 12)
                     this.SibaraResult = "sibala";
-                else if(Points == 3)
+                else if (Points == 3)
                 {
                     this.SibaraResult = "BG";
                 }
@@ -86,6 +81,5 @@ namespace Sibala_Hsinchu_2
                     this.SibaraResult = $"{Points} point";
             }
         }
-
     }
 }
