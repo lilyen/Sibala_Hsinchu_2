@@ -37,7 +37,7 @@ namespace Sibala_Hsinchu_2
             {
                 Points = 0;
                 Status = SibaraStatus.StatusEnum.NoPoint;
-                this.MaxPoint = _nums.First();
+                this.MaxPoint = 0;
             }
             else if (distinctCount == 2)
             {
