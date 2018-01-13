@@ -15,9 +15,11 @@ namespace Sibala_Hsinchu_2
         public void input_1_1_1_1_should_be_sameColor()
         {
             var target = new Sibara(1, 1, 1, 1);
-            var expected = "same color";
-            var actual = target.SibaraResult;
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(SibaraStatus.StatusEnum.SameColor, target.Status);
+            Assert.AreEqual("same color", target.SibaraResult);
+            Assert.AreEqual(1, target.Points);
+            Assert.AreEqual(1, target.MaxPoint);
+            
         }
 
         [TestMethod]

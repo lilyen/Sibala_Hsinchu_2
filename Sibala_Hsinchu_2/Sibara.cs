@@ -30,7 +30,7 @@ namespace Sibala_Hsinchu_2
 
             if (distinctCount == 1)
             {
-                this.Points = _nums.Sum()/2;
+                this.Points = _nums.First();
                 this.Status = SibaraStatus.StatusEnum.SameColor;
                 this.MaxPoint = _nums.First();
             }else if (distinctCount == 4)
