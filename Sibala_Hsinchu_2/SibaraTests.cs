@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Runtime.InteropServices;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Sibala_Hsinchu_2
 {
@@ -15,11 +9,7 @@ namespace Sibala_Hsinchu_2
         public void input_1_1_1_1_should_be_sameColor()
         {
             var target = new Sibara(1, 1, 1, 1);
-            Assert.AreEqual(SibaraStatus.StatusEnum.SameColor, target.Status);
-            Assert.AreEqual("same color", target.SibaraResult);
-            Assert.AreEqual(1, target.Points);
-            Assert.AreEqual(1, target.MaxPoint);
-            
+            VerifySibala(target, SibaraStatus.StatusEnum.SameColor, "same color", 1, 1);
         }
 
         [TestMethod]
@@ -39,8 +29,6 @@ namespace Sibala_Hsinchu_2
             var actual = target.SibaraResult;
             Assert.AreEqual(expected, actual);
         }
-
-
 
         [TestMethod]
         public void input_6_2_6_2_should_be_Sibala()
@@ -78,38 +66,12 @@ namespace Sibala_Hsinchu_2
             Assert.AreEqual(expected, actual);
         }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        [TestMethod]
-        public void input_1_1_1_1_should_be_1()
+        private void VerifySibala(Sibara target, SibaraStatus.StatusEnum status, string result, int points, int maxPoint)
         {
-            var target = new Sibara(1, 1, 1, 1);
-            var expected = 1;
-            var actual = target.MaxPoint;
-            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(status, target.Status);
+            Assert.AreEqual(result, target.SibaraResult);
+            Assert.AreEqual(points, target.Points);
+            Assert.AreEqual(maxPoint, target.MaxPoint);
         }
 
         [TestMethod]
@@ -129,8 +91,6 @@ namespace Sibala_Hsinchu_2
             var actual = target.MaxPoint;
             Assert.AreEqual(expected, actual);
         }
-
-
 
         [TestMethod]
         public void input_6_2_6_2_should_be_6()
@@ -167,13 +127,5 @@ namespace Sibala_Hsinchu_2
             var actual = target.MaxPoint;
             Assert.AreEqual(expected, actual);
         }
-
-
-
-
-
-
-
-
     }
 }
