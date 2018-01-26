@@ -8,7 +8,7 @@ namespace Sibala_Hsinchu_2
     public class DiceComparerTest
     {
         [TestMethod]
-        public void DiceComparer_NoPoint_6_1_3_4_Compare_NoPoint_3_4_1_2_Should_be_0()
+        public void DiceComparer_NoPoint_Compare_NoPoint_Should_be_0()
         {
             var noPoint1 = Substitute.For<ISibara>();
             noPoint1.Status.Returns(SibaraStatus.StatusEnum.NoPoint);
